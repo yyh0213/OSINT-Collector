@@ -1,0 +1,38 @@
+Name,URL,Status,Last_Checked,Note
+Yonhap News (English),https://en.yna.co.kr/RSS/news.xml,SUCCESS,2026-04-07 15:10:46,정상 (기사 89개)
+Maeil Business (Economy),https://www.mk.co.kr/rss/30100041/,SUCCESS,2026-04-07 15:10:55,정상 (기사 50개)
+Associated Press (AP) World,https://newsatme.com/api/rss/ap/world,DEAD_LINK,2026-04-07 15:11:04,DNS/연결 거부 (서버 다운 의심)
+Wall Street Journal (World),https://feeds.a.dj.com/rss/RSSWorldNews.xml,SUCCESS,2026-04-07 15:11:05,정상 (기사 20개)
+Bloomberg Energy,https://www.bloomberg.com/energy/feeds/rss,DEAD_LINK,2026-04-07 15:11:34,HTTP 404 (존재하지 않는 페이지)
+MarketWatch Top,https://www.marketwatch.com/rss/topstories,SUCCESS,2026-04-07 15:11:35,정상 (기사 10개)
+USNI News (Naval),https://news.usni.org/feed,SUCCESS,2026-04-07 15:12:01,정상 (기사 30개)
+Defense One,https://www.defenseone.com/rss/all,SUCCESS,2026-04-07 15:12:35,정상 (기사 22개)
+Breaking Defense,https://breakingdefense.com/feed/,SUCCESS,2026-04-07 15:12:44,정상 (기사 15개)
+The War Zone,https://www.twz.com/feed,SUCCESS,2026-04-07 15:12:55,정상 (기사 31개)
+Space Force News,https://www.spaceforce.mil/RSS/,EMPTY_FEED,2026-04-07 15:13:06,HTTP 200이나 RSS 데이터 없음
+CISA All Alerts,https://www.cisa.gov/cybersecurity-advisories/all.xml,SUCCESS,2026-04-07 15:13:06,정상 (기사 30개)
+Krebs on Security,https://krebsonsecurity.com/feed,SUCCESS,2026-04-07 15:13:15,정상 (기사 10개)
+Wired Security,https://www.wired.com/feed/category/security/latest/rss,SUCCESS,2026-04-07 15:13:21,정상 (기사 20개)
+MIT Tech AI,https://www.technologyreview.com/topic/artificial-intelligence/feed/,SUCCESS,2026-04-07 15:13:28,정상 (기사 10개)
+TechCrunch AI,https://techcrunch.com/category/artificial-intelligence/feed/,SUCCESS,2026-04-07 15:13:34,정상 (기사 20개)
+BBC News (World),http://feeds.bbci.co.uk/news/world/rss.xml,SUCCESS,2026-04-07 15:13:41,정상 (기사 27개)
+Financial Times (Global),https://www.ft.com/?format=rss,SUCCESS,2026-04-07 15:13:48,정상 (기사 9개)
+Economist Econ,https://www.economist.com/finance-and-economics/rss.xml,SUCCESS,2026-04-07 15:13:54,정상 (기사 300개)
+Chatham House,https://www.chathamhouse.org/rss-feeds,BLOCKED,2026-04-07 15:14:40,HTTP 403 (방화벽/봇 차단 의심)
+Janes Defense,https://www.janes.com/defence-news/rss,DEAD_LINK,2026-04-07 15:14:41,HTTP 404 (존재하지 않는 페이지)
+France 24 (English),https://www.france24.com/en/rss,SUCCESS,2026-04-07 15:14:41,정상 (기사 24개)
+Le Monde (English),https://www.lemonde.fr/en/rss/tout_le_monde.xml,DEAD_LINK,2026-04-07 15:14:47,HTTP 404 (존재하지 않는 페이지)
+DW News (English),https://rss.dw.com/rdf/rss-en-all,SUCCESS,2026-04-07 15:14:48,정상 (기사 135개)
+Der Spiegel (International),https://www.spiegel.de/international/index.rss,SUCCESS,2026-04-07 15:14:59,정상 (기사 20개)
+NHK World News,https://www3.nhk.or.jp/nhkworld/rd/rss/english/news.xml,DEAD_LINK,2026-04-07 15:15:11,HTTP 404 (존재하지 않는 페이지)
+Nikkei Asia,https://asia.nikkei.com/rss/feed/nar,SUCCESS,2026-04-07 15:15:11,정상 (기사 50개)
+Global Times (Official),https://www.globaltimes.cn/rss/all.xml,DEAD_LINK,2026-04-07 15:15:18,HTTP 404 (존재하지 않는 페이지)
+SCMP Asia,https://www.scmp.com/rss/91/feed.xml,DEAD_LINK,2026-04-07 15:15:18,HTTP 404 (존재하지 않는 페이지)
+SCMP Diplomacy,https://www.scmp.com/rss/318199/feed,SUCCESS,2026-04-07 15:15:18,정상 (기사 50개)
+IMF News & Data,https://www.imf.org/en/news/rss-feeds,EMPTY_FEED,2026-04-07 15:15:26,HTTP 200이나 RSS 데이터 없음
+World Bank Press,https://www.worldbank.org/en/news/all.xml,EMPTY_FEED,2026-04-07 15:15:26,HTTP 200이나 RSS 데이터 없음
+Defense News,https://www.defensenews.com/arc/outboundfeeds/rss/?outputType=xml,SUCCESS,2026-04-07 15:15:26,정상 (기사 25개)
+Naval News,https://www.navalnews.com/feed/,SUCCESS,2026-04-07 15:15:38,정상 (기사 10개)
+ISW Research,https://iswresearch.org/feeds/posts/default,EMPTY_FEED,2026-04-07 15:15:47,HTTP 200이나 RSS 데이터 없음
+CFR Daily Brief,https://www.cfr.org/keywords/daily-news-brief,EMPTY_FEED,2026-04-07 15:15:48,HTTP 200이나 RSS 데이터 없음
+BleepingComputer,https://www.bleepingcomputer.com/feed/,SUCCESS,2026-04-07 15:15:49,정상 (기사 15개)
