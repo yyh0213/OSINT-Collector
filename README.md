@@ -56,10 +56,12 @@ docker run -d --name osint-collector osint-collector
 ## 📂 프로젝트 구조
 
 - `collector.py`: 메인 루프 및 수집/임베딩 로직.
-- `evaluator.py`: 수집된 데이터의 신뢰도 및 독창성 검증.
-- `hook.py`: 이벤트 기반 비동기 작업을 위한 매니저.
+- `evaluator.py`: 수집된 데이터의 신뢰도 및 독창성 검증 (감찰관 모듈).
+- `hooks.py`: 이벤트 기반 비동기 작업을 위한 매니저.
 - `config/`: 정보원 설정(`sources.yaml`) 및 상태 추적 DB 저장.
 - `dockerfile`: 컨테이너 빌드 설정.
+- `CHANGELOG.md`: 버전별 변경 이력.
+- `docs/PHILOSOPHY.md` 📖: 시스템의 철학, 운영 원리, 의의 및 한계점이 자세히 서술된 백서.
 
 ## 📝 라이선스
 이 프로젝트는 개인 연구 및 정보 수집을 위해 제작되었습니다. 수집하는 소스에 대한 저작권 및 이용 약관을 준수하시기 바랍니다.

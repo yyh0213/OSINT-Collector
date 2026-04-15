@@ -36,3 +36,10 @@ Naval News,https://www.navalnews.com/feed/,SUCCESS,2026-04-07 15:15:38,정상 (�
 ISW Research,https://iswresearch.org/feeds/posts/default,EMPTY_FEED,2026-04-07 15:15:47,HTTP 200이나 RSS 데이터 없음
 CFR Daily Brief,https://www.cfr.org/keywords/daily-news-brief,EMPTY_FEED,2026-04-07 15:15:48,HTTP 200이나 RSS 데이터 없음
 BleepingComputer,https://www.bleepingcomputer.com/feed/,SUCCESS,2026-04-07 15:15:49,정상 (기사 15개)
+MBC News (Politics),https://imnews.imbc.com/rss/news/news_01.xml,EMPTY_FEED,2026-04-15 08:50:36,HTTP 200이나 RSS 데이터 없음
+KBS News (Major),http://mn.kbs.co.kr/rss/news/news_broad.xml,DEAD_LINK,2026-04-15 08:50:36,HTTP 404 (존재하지 않는 페이지)
+SBS News (Politics),https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=01&plink=RSSREADER,SUCCESS,2026-04-15 08:50:36,정상 (기사 29개)
+Yonhap News (Politics - KR),https://www.yna.co.kr/rss/politics.xml,SUCCESS,2026-04-15 08:50:50,정상 (기사 120개)
+Chosun Ilbo (Politics),https://www.chosun.com/arc/outboundfeeds/rss/category/politics/?outputType=xml,SUCCESS,2026-04-15 08:51:03,정상 (기사 100개)
+Hankyoreh (Politics),http://www.hani.co.kr/rss/politics/,SUCCESS,2026-04-15 08:52:54,정상 (기사 30개)
+Korea Economic Daily (Hankyung),https://rss.hankyung.com/feed/economy.xml,EMPTY_FEED,2026-04-15 08:53:08,HTTP 200이나 RSS 데이터 없음

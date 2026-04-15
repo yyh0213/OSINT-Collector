@@ -29,10 +29,12 @@ CLEAN_MODEL = "llama3"
 
 CONFIG_FILE = "config/sources.yaml"
 DB_FILE = "config/sources_db.csv"
+SQLITE_DB_FILE = "config/reliability.db"
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 
 client = QdrantClient(host=QDRANT_HOST, port=6333)
+hook_manager = HookManager()
 
 
 # --- 2. CSV DB 관리 로직 ---
@@ -210,6 +212,7 @@ async def process_feed(source, db, http_client):
                 payload = {
                     "title": title,
                     "link": link,
+                    "source_name": name,
                     "project": source.get("project", "General"),
                     "category": source.get("category", "News"),
                     "timestamp": current_timestamp,
@@ -221,6 +224,10 @@ async def process_feed(source, db, http_client):
                     collection_name=COLLECTION_NAME,
                     points=[PointStruct(id=point_id, vector=vector, payload=payload)],
                 )
+
+                # 🕵️ 감찰관 훅 트리거 — 백그라운드에서 비동기 평가 실행
+                await hook_manager.trigger("article_inserted", payload=payload, vector=vector)
+
                 await asyncio.sleep(0.1)
 
             await asyncio.sleep(1)
@@ -294,22 +301,34 @@ async def main():
     print("🚀 자율형 OSINT Collector 2.0 (Full-Text) 시작...")
     init_qdrant_collection()
 
-    while True:
-        try:
-            with open(CONFIG_FILE, "r", encoding="utf-8") as f:
-                config = yaml.safe_load(f)
-            db = load_db()
+    # --- 감찰관(Evaluator) 초기화 및 훅 등록 ---
+    async with httpx.AsyncClient(headers=HEADERS) as llm_http_client:
+        evaluator = SourceEvaluator(
+            sqlite_db_path=SQLITE_DB_FILE,
+            qdrant_client=client,
+            llm_client=llm_http_client,
+            llm_gen_url=OLLAMA_GEN_URL,
+            llm_model=CLEAN_MODEL,
+        )
+        hook_manager.register("article_inserted", evaluator.on_article_inserted)
+        print("[*] 🕵️ 감찰관 모듈 등록 완료 (article_inserted 훅)")
 
-            print(f"\n[{time.ctime()}] 수집 사이클 시작...")
-            async with httpx.AsyncClient(headers=HEADERS) as http_client:
-                for source in config["sources"]:
-                    await process_feed(source, db, http_client)
+        while True:
+            try:
+                with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+                    config = yaml.safe_load(f)
+                db = load_db()
 
-            await cleanup_database()
-            print(f"[{time.ctime()}] 사이클 완료. {SLEEP_INTERVAL}초 대기합니다.")
-        except Exception as e:
-            print(f"❌ 시스템 에러: {e}")
-        await asyncio.sleep(SLEEP_INTERVAL)
+                print(f"\n[{time.ctime()}] 수집 사이클 시작...")
+                async with httpx.AsyncClient(headers=HEADERS) as http_client:
+                    for source in config["sources"]:
+                        await process_feed(source, db, http_client)
+
+                await cleanup_database()
+                print(f"[{time.ctime()}] 사이클 완료. {SLEEP_INTERVAL}초 대기합니다.")
+            except Exception as e:
+                print(f"❌ 시스템 에러: {e}")
+            await asyncio.sleep(SLEEP_INTERVAL)
 
 
 if __name__ == "__main__":
