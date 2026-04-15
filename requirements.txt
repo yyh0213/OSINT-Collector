@@ -3,3 +3,6 @@ httpx
 qdrant-client
 pyyaml
 trafilatura
+fastapi
+uvicorn
+apscheduler

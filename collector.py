@@ -281,26 +281,42 @@ async def cleanup_database():
 
 
 # --- 7. 초기화 및 무한 루프 ---
-def init_qdrant_collection():
-    """Qdrant 컬렉션 존재 여부를 확인하고 없으면 새로 생성합니다."""
+# --- 7. 초기화 및 단일 사이클 로직 ---
+def setup_collector():
+    """Qdrant 컬렉션 등 시스템을 초기에 준비합니다."""
+    print("🚀 자율형 OSINT Collector 2.0 (FastAPI 통합) 준비 중...")
     if not client.collection_exists(collection_name=COLLECTION_NAME):
         print(f"[*] '{COLLECTION_NAME}' 컬렉션이 존재하지 않아 새로 생성합니다...")
         client.create_collection(
             collection_name=COLLECTION_NAME,
             vectors_config=VectorParams(
-                size=1024,  # bge-m3 모델의 임베딩 차원 수
-                distance=Distance.COSINE,  # 코사인 유사도 사용
+                size=1024,
+                distance=Distance.COSINE,
             ),
         )
         print(f"  [+] 컬렉션 생성 완료 (차원수: 1024)")
     else:
         print(f"[*] '{COLLECTION_NAME}' 컬렉션 상태 확인 완료 (정상).")
 
+async def run_crawl_cycle():
+    """1회성 크롤링/수집 사이클을 실행합니다. (스케줄러나 수동 트리거 트리거 시 호출됨)"""
+    print(f"\n[{time.ctime()}] 🚀 수집 사이클 딥다이브 시작...")
+    
+    # 훅 초기화 (중복 등록 방지)
+    hook_manager._hooks["article_inserted"] = []
 
-async def main():
-    print("🚀 자율형 OSINT Collector 2.0 (Full-Text) 시작...")
-    init_qdrant_collection()
+    async with httpx.AsyncClient(headers=HEADERS, timeout=60.0) as http_client:
+        # 감찰관 초기화 (1사이클용)
+        evaluator = SourceEvaluator(
+            sqlite_db_path=SQLITE_DB_FILE,
+            qdrant_client=client,
+            llm_client=http_client,
+            llm_gen_url=OLLAMA_GEN_URL,
+            llm_model=CLEAN_MODEL,
+        )
+        hook_manager.register("article_inserted", evaluator.on_article_inserted)
 
+<<<<<<< HEAD
     # --- 감찰관(Evaluator) 초기화 및 훅 등록 ---
     async with httpx.AsyncClient(headers=HEADERS) as llm_http_client:
         evaluator = SourceEvaluator(
@@ -333,3 +349,17 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+=======
+        try:
+            with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+                config = yaml.safe_load(f)
+            db = load_db()
+
+            for source in config.get("sources", []):
+                await process_feed(source, db, http_client)
+
+            await cleanup_database()
+            print(f"[{time.ctime()}] ✅ 수집 사이클이 무사히 완료되었습니다.")
+        except Exception as e:
+            print(f"❌ 수집 사이클 중 에러 발생: {e}")
+>>>>>>> 6c55772018cf6d125ee77a01498d46614a967708
